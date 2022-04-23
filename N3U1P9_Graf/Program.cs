@@ -8,12 +8,6 @@ namespace N3U1P9_Graf
 {
     internal class Program
     {
-
-        static void Logger(Person t)
-        {
-            Console.WriteLine(t.ToString());
-        }
-
         static void EdgeLogger(object source, Graph<Person>.GraphEventArgs<Person> args)
         {
             Console.WriteLine($"[Graf] New edge added: '{args.A}' <-> '{args.B}'");
@@ -49,7 +43,10 @@ namespace N3U1P9_Graf
             graf.AddEdge(Zack, Peter);
             graf.AddEdge(Peter, Janet);
 
-            ;
+            //Legrovidebb ut Janet es Stew kozott
+            Console.WriteLine($"The length of the shortest path between Janet and Stew: {graf.ShortestPathBFS(Janet, Stew)}");
+
+            Console.ReadKey();
         }
     }
 }

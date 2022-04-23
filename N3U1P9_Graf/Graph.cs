@@ -87,6 +87,36 @@ namespace N3U1P9_Graf
             }
         }
 
+        public int ShortestPathBFS(T from, T to)
+        {
+            Queue<T> S = new Queue<T>();
+            List<T> F = new List<T>();
+
+            Dictionary<T, int> Distances = new Dictionary<T, int>();
+
+            Distances[from] = 0;
+
+            S.Enqueue(from);
+            F.Add(from);
+
+            while (S.Count != 0)
+            {
+                T k = S.Dequeue();
+
+                foreach (T edge in Neighbors(k))
+                {
+                    if (!F.Contains(edge))
+                    {
+                        S.Enqueue(edge);
+                        F.Add(edge);
+                        Distances[edge] = Distances[k] + 1;
+                    }
+                }
+            }
+
+            return Distances[to];
+        }
+
         public void DFS(T from, ExternalProcessor _method)
         {
             ExternalProcessor method = _method;
